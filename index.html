@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Aniversario, Amor!</title>
+    <!-- Favicon de corazón -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Header de Navegación -->
+    <header class="sticky top-0 z-50">
+        <div class="container mx-auto flex flex-col items-center py-3">
+            <nav class="flex flex-wrap justify-center gap-2 md:gap-4">
+                <a href="#portada" class="nav-link">Portada</a>
+                <a href="#revelado" class="nav-link">Rompecabezas</a>
+                <a href="#dedicatoria" class="nav-link">Dedicatoria</a>
+                <a href="#carrusel-fotos" class="nav-link">Recuerdos</a>
+                <a href="#album" class="nav-link">Álbum</a>
+                <a href="#carta" class="nav-link">Carta</a>
+                <a href="#playlist" class="nav-link">Canciones</a>
+                <a href="#cuestionario" class="nav-link">Cuestionario</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Portada -->
+    <section id="portada" class="section bg-gradient-to-b from-pink-100 to-white mb-2">
+        <h1 class="text-5xl mb-2">¡Feliz Segundo Aniversario, Amor!</h1>
+        <div class="flex flex-wrap justify-center">
+            <img src="Imagenes/IMG-20250425-WA0202.jpg" alt="Foto 1" class="circle-photo">
+            <img src="Imagenes/1714099408073.jpg" alt="Foto 2" class="circle-photo">
+            <img src="Imagenes/IMG_20240427_185244_291.jpg" alt="Foto 3" class="circle-photo">
+        </div>
+        <h2 class="text-3xl mt-2">Dhanialys & Anyelo</h2>
+        <p class="text-lg mt-1">Desde el 15 de Julio de 2023</p>
+    </section>
+
+    <!-- Revelado de Imagen -->
+    <section id="revelado" class="section mb-2">
+        <h2 class="text-4xl mb-2">¡Rompecabezas especial!</h2>
+        <div class="flex flex-wrap justify-center items-start gap-8">
+            <div style="text-align:center;">
+                <span class="block mb-1 text-lg text-pink-700 font-semibold">Referencia</span>
+                <img id="puzzle-reference" src="" alt="Referencia del rompecabezas" style="max-width:220px; max-height:180px; border-radius:1rem; box-shadow:0 2px 8px 0 rgba(252,182,159,0.18); border:3px solid #fbc2eb; background:#fff;" />
+            </div>
+            <div id="puzzle-board-wrapper" style="display: flex; justify-content: center;"></div>
+        </div>
+        <p class="mt-2">Arma la imagen arrastrando las piezas a su lugar correcto.</p>
+        <style>
+            /* Ver style.css */
+        </style>
+    </section>
+
+
+    <!-- Dedicatoria -->
+    <section id="dedicatoria" class="section bg-pink-50 mb-2">
+        <h2 class="text-4xl mb-2">Dedicatoria para ti</h2>
+        <p class="text-lg max-w-2xl">
+            <strong>Para mi amor, en nuestro segundo aniversario</strong><br><br>
+            Hoy celebramos dos años llenos de risas, sueños y momentos inolvidables juntos. Gracias por ser mi compañero, mi apoyo y mi inspiración cada día. Estoy agradecida por cada instante a tu lado.<br><br>
+            ¡Feliz segundo aniversario!
+        </p>
+    </section>
+
+    <!-- Carrusel de Fotos Automático -->
+    <section id="carrusel-fotos" class="section mb-2">
+        <h2 class="text-3xl mb-2 text-center">Recuerdos en imágenes</h2>
+        <div id="carousel-container" style="overflow-x: auto; white-space: nowrap; scroll-behavior: smooth; border-radius: 1rem; box-shadow: 0 2px 12px 0 rgba(252,182,159,0.10); background: #fff; padding: 1rem 0;">
+            <!-- Las imágenes se insertan por JS -->
+        </div>
+    </section>
+
+
+
+    <!-- Álbum de Fotos -->
+    <section id="album" class="section bg-pink-50 mb-2">
+        <h2 class="text-4xl mb-2">Álbum de recuerdos</h2>
+        <div class="flex space-x-4 mb-4">
+            <button class="album-btn" data-category="novios">Nuestro día</button>
+            <button class="album-btn" data-category="favoritos">Mis momentos favoritos</button>
+            <button class="album-btn" data-category="nosotros">Fotos random</button>
+        </div>
+        <div class="album-grid" id="album-grid"></div>
+    </section>
+
+    <!-- Carta para Ti -->
+    <section id="carta" class="section mb-2">
+        <h2 class="text-4xl mb-2">Carta para ti</h2>
+        <div class="carta-sobre-container flex flex-col items-center justify-center">
+            <div id="sobre-carta" class="carta-sobre animada" title="Haz clic para abrir la carta">
+                <div class="sobre-tapa"></div>
+                <div class="sobre-cuerpo"></div>
+                <div class="papel-carta"><span class="icon-corazon">❤</span></div>
+            </div>
+            <p class="text-lg mt-2 text-pink-700">Haz clic en el sobre para leer tu carta especial</p>
+        </div>
+        <!-- Modal de la carta -->
+        <div id="modal-carta" class="modal-carta-bg" style="display:none;">
+            <div class="modal-carta-content">
+                <button class="modal-carta-close" title="Cerrar">×</button>
+                <h3 class="modal-carta-title">Carta para ti</h3>
+                <div class="modal-carta-text modal-carta-scroll">
+                    Hoy celebramos dos años llenos de momentos, risas compartidas y sueños construidos juntos. Desde el día en que nuestras vidas se cruzaron, cada instante a tu lado ha sido un regalo que atesoro profundamente.<br><br>
+                    Gracias por ser mi compañero y mi mayor apoyo. Gracias por hacerme reír incluso en los días más difíciles y por llenar mi corazón de alegría con solo una sonrisa tuya. Cada día contigo es una aventura que quiero seguir viviendo, aprendiendo y creciendo a tu lado.<br><br>
+                    Este aniversario no solo es un recordatorio de lo lejos que hemos llegado, sino también de todo lo que aún nos espera. Espero poder seguir construyendo nuestro camino juntos, con amor, paciencia y muchas ganas de seguir sumando momentos especiales.<br><br>
+                    Te quiero más de lo que las palabras pueden expresar. Gracias por estos dos años maravillosos y por ser la persona tan especial que eres para mí.<br><br>
+                    ¡Feliz aniversario, amor!<br><br>
+                    Con todo mi corazón,<br><br>
+                    <strong>[Dhanialys]</strong>
+                </div>
+            </div>
+        </div>
+        <style>
+            /* Ver style.css */
+        </style>
+        <script>
+        // === Dinámica: Carta Animada ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const sobre = document.getElementById('sobre-carta');
+            const modal = document.getElementById('modal-carta');
+            const closeBtn = modal.querySelector('.modal-carta-close');
+            let abierto = false;
+            sobre.addEventListener('click', function() {
+                if (!abierto) {
+                    sobre.classList.add('abierta');
+                    setTimeout(() => {
+                        modal.style.display = 'flex';
+                    }, 700);
+                    abierto = true;
+                }
+            });
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+                sobre.classList.remove('abierta');
+                abierto = false;
+            });
+            // Cerrar modal al hacer clic fuera del contenido
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    sobre.classList.remove('abierta');
+                    abierto = false;
+                }
+            });
+        });
+        </script>
+    </section>
+
+    <!-- Canciones -->
+    <section id="playlist" class="section bg-pink-50 mb-2">
+        <h2 class="text-4xl mb-2">Nuestras canciones especiales</h2>
+        <div class="flex flex-wrap justify-center gap-6">
+            <!-- Polaroid 1 -->
+            <div class="polaroid-song">
+                <div class="polaroid-img">
+                    <img src="Imagenes/ab67616d0000b27374397614a8642d957d5d78cc.jpeg" alt="Halo Beyoncé" />
+                </div>
+                <div class="polaroid-caption">Halo<br><span class="text-sm">Beyoncé</span></div>
+                <audio controls class="w-full mt-2">
+                    <source src="Imagenes/Beyoncé - Halo.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <!-- Polaroid 2 -->
+            <div class="polaroid-song">
+                <div class="polaroid-img">
+                    <img src="Imagenes/750x750.jpg" alt="Blanco y Negro Malú" />
+                </div>
+                <div class="polaroid-caption">Blanco y Negro<br><span class="text-sm">Malú</span></div>
+                <audio controls class="w-full mt-2">
+                    <source src="Imagenes/Malú - Blanco Y Negro (Videoclip).mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+            <!-- Polaroid 3 -->
+            <div class="polaroid-song">
+                <div class="polaroid-img">
+                    <img src="Imagenes/ab67616d0000b2738a51ce8381d444b0d64d2f22.jpeg" alt="Mi Corazón Encantado" />
+                </div>
+                <div class="polaroid-caption">Mi Corazón Encantado<br><span class="text-sm">Dragon Ball GT</span></div>
+                <audio controls class="w-full mt-2">
+                    <source src="Imagenes/Mi corazón encantado - Aaron Montalvo.mp3" type="audio/mpeg">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>
+            </div>
+        </div>
+        <style>
+            /* Ver style.css */
+        </style>
+    </section>
+
+
+    <!-- Dinámica: Rueda de Cupones de Amor -->
+    <section id="rueda-retos" class="section bg-pink-50 mb-2">
+        <h2 class="text-4xl mb-2">¡Gira la rueda y gana un cupón de amor!</h2>
+        <div class="flex flex-col items-center">
+            <div id="wheel-container" class="mb-6">
+                <canvas id="wheel-canvas" width="320" height="320" class="rounded-full shadow-lg"></canvas>
+            </div>
+            <button id="spin-wheel" class="album-btn mb-2">Girar la rueda</button>
+        </div>
+        <div id="cupon-modal" style="display:none;"></div>
+        <style>
+            /* Ver style.css */
+    </style>
+
+        </style>
+    </section>
+
+    <!-- Dinámica: Preguntas Rápidas de Amor -->
+
+
+
+
+    <!-- Cuestionario -->
+    <section id="cuestionario" class="section bg-pink-50 mb-2">
+        <h2 class="text-4xl mb-2">¿Cuánto sabes de nosotros?</h2>
+        <div class="quiz-container">
+            <p id="quiz-question" class="text-lg mb-2"></p>
+            <div id="quiz-options" class="flex flex-wrap justify-center"></div>
+            <p id="quiz-result" class="mt-2 text-lg"></p>
+            <button id="next-question" class="mt-2">Siguiente pregunta</button>
+        </div>
+        <p id="final-result" class="mt-2 text-lg font-bold" style="display: none;"></p>
+    </section>
+
+    <script>
+        // === Dinámica: Rueda de Cupones de Amor ===
+        const cupones = [
+            'Vale por un masaje relajante 💆‍♀️',
+            'Vale por una cita sorpresa planeada por mí 🎁',
+            'Vale por una noche de película, donde tú elijas 🍿',
+            'Vale por un día sin quejas de mi parte 😇',
+            'Vale por elegir la playlist del día 🎶',
+            'Vale por una salida a donde tú quieras 🚗',
+            'Vale por una cena hecha en casa 🍽️',
+            'Vale por un día de mimos y abrazos 🤗',
+            'Vale por una tarde de juegos juntos 🎲',
+            'Vale por otro año juntos jeje 💖'
+        ];
+        const wheelColors = ['#fbc2eb','#fcb69f','#b83280','#fbc2eb','#fcb69f','#b83280','#fbc2eb','#fcb69f','#b83280','#fbc2eb'];
+        const wheelCanvas = document.getElementById('wheel-canvas');
+        const ctx = wheelCanvas.getContext('2d');
+        const numSegments = cupones.length;
+        const anglePerSegment = 2 * Math.PI / numSegments;
+        let currentAngle = 0;
+        let spinning = false;
+
+        function drawWheel() {
+            for (let i = 0; i < numSegments; i++) {
+                ctx.beginPath();
+                ctx.moveTo(160,160);
+                ctx.arc(160,160,150,i*anglePerSegment+currentAngle,(i+1)*anglePerSegment+currentAngle);
+                ctx.closePath();
+                ctx.fillStyle = wheelColors[i%wheelColors.length];
+                ctx.fill();
+                // No se dibuja texto, solo color
+            }
+            // Flecha
+            ctx.beginPath();
+            ctx.moveTo(160,10);
+            ctx.lineTo(150,35);
+            ctx.lineTo(170,35);
+            ctx.closePath();
+            ctx.fillStyle = '#b83280';
+            ctx.fill();
+        }
+
+        drawWheel();
+
+        document.getElementById('spin-wheel').onclick = function() {
+            if (spinning) return;
+            spinning = true;
+            let spinAngle = Math.random()*6*Math.PI + 6*Math.PI;
+            let duration = 2500;
+            let start = null;
+            function animateWheel(ts) {
+                if (!start) start = ts;
+                let elapsed = ts - start;
+                let progress = Math.min(elapsed/duration,1);
+                let ease = 1-Math.pow(1-progress,3);
+                currentAngle = spinAngle*ease;
+                ctx.clearRect(0,0,320,320);
+                drawWheel();
+                if (progress < 1) {
+                    requestAnimationFrame(animateWheel);
+                } else {
+                    // Determinar resultado
+                    let seg = Math.floor((numSegments - ((currentAngle/(2*Math.PI))%1)*numSegments)%numSegments);
+                    mostrarCuponModal(cupones[seg]);
+                    spinning = false;
+                }
+            }
+            requestAnimationFrame(animateWheel);
+        };
+
+        // Modal de cupón visual
+        function mostrarCuponModal(texto) {
+            const cuponDiv = document.getElementById('cupon-modal');
+            cuponDiv.innerHTML = `
+                <div class="cupon-ticket">
+                    <button class="cupon-close" title="Cerrar">×</button>
+                    <div class="cupon-heart">❤</div>
+                    <div class="cupon-title">Cupón de Amor</div>
+                    <div class="cupon-desc">${texto}</div>
+                    <div class="cupon-footer">Válido solo para ti · ${new Date().getFullYear()}</div>
+                </div>
+            `;
+            cuponDiv.style.display = 'flex';
+            cuponDiv.querySelector('.cupon-close').onclick = function() {
+                cuponDiv.style.display = 'none';
+            };
+        }
+        // ...código existente...
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselImages = [
+                'Imagenes/IMG-20250425-WA0202.jpg',
+                'Imagenes/IMG-20241221-WA0035.jpg',
+                'Imagenes/IMG_20240427_185244_291.jpg',
+                'Imagenes/IMG_20240427_185212_568.jpg',
+                'Imagenes/IMG-20240916-WA0020.jpg',
+                'Imagenes/IMG-20240329-WA0089.jpg',
+                'Imagenes/IMG_20240214_181057_580_083333.jpg',
+                'Imagenes/f60b23bd7da3bf1387ed975550aff48e.jpg',
+                'Imagenes/1708049895085_083237.jpg',
+                'Imagenes/si.png'
+
+            ];
+            const carouselContainer = document.getElementById('carousel-container');
+            if (carouselContainer) {
+                carouselImages.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = 'Recuerdo';
+                    img.style.width = '180px';
+                    img.style.height = '180px';
+                    img.style.objectFit = 'cover';
+                    img.style.display = 'inline-block';
+                    img.style.margin = '0 0.5rem';
+                    img.style.borderRadius = '1rem';
+                    img.style.boxShadow = '0 2px 8px 0 rgba(252,182,159,0.10)';
+                    carouselContainer.appendChild(img);
+                });
+                // Scroll automático
+                let direction = 1;
+                setInterval(() => {
+                    if (!carouselContainer) return;
+                    if (direction === 1 && (carouselContainer.scrollLeft + carouselContainer.offsetWidth >= carouselContainer.scrollWidth - 5)) {
+                        direction = -1;
+                    } else if (direction === -1 && carouselContainer.scrollLeft <= 5) {
+                        direction = 1;
+                    }
+                    carouselContainer.scrollLeft += direction * 2.5;
+                }, 30);
+            }
+        });
+        // Resaltar el enlace activo en el header al hacer scroll
+        const sections = ['portada','revelado','dedicatoria','carrusel-fotos','album','carta','playlist','videos','mensaje','cuestionario'];
+        window.addEventListener('scroll', function() {
+            let scrollPos = window.scrollY || document.documentElement.scrollTop;
+            let found = false;
+            for (let i = 0; i < sections.length; i++) {
+                const sec = document.getElementById(sections[i]);
+                if (sec && sec.offsetTop - 80 <= scrollPos) {
+                    document.querySelectorAll('.nav-link').forEach(e => e.classList.remove('active'));
+                    document.querySelector('.nav-link[href="#'+sections[i]+'"]').classList.add('active');
+                    found = true;
+                }
+            }
+            if (!found) {
+                document.querySelectorAll('.nav-link').forEach(e => e.classList.remove('active'));
+            }
+        });
+        let tilesRevealed = 0;
+        function revealTile(tile) {
+            tile.style.opacity = '0';
+            tilesRevealed++;
+            if (tilesRevealed === 12) {
+                document.getElementById('reveal-image').style.display = 'block';
+                alert('¡Foto revelada! Te amo ❤️');
+            }
+        }
+
+        // Rompecabezas aleatorio
+        const puzzleImages = [
+            'Imagenes/1713565732696.jpg',
+            'Imagenes/1708049895085_083237.jpg',
+            'Imagenes/1746894664930.jpg',
+            'Imagenes/1749406702003.jpg',
+            'Imagenes/IMG_20240214_181057_580_083333.jpg',
+            'Imagenes/IMG-20241102-WA0036.jpg',
+            'Imagenes/IMG-20240929-WA0037.jpg',
+            'Imagenes/IMG_20240427_185252_870.jpg',
+            'Imagenes/IMG-20240929-WA0062.jpg',
+            'Imagenes/IMG_20240427_185252_826.jpg',
+            'Imagenes/IMG-20241001-WA0038.jpg',
+            'Imagenes/IMG-20241026-WA0008.jpg'
+        ];
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        function createPuzzle() {
+            // Selecciona imagen aleatoria
+            const imgSrc = puzzleImages[Math.floor(Math.random() * puzzleImages.length)];
+            // Coloca la imagen de referencia
+            const refImg = document.getElementById('puzzle-reference');
+            if (refImg) {
+                refImg.src = imgSrc;
+            }
+            // Crea una imagen para obtener dimensiones reales
+            const tempImg = new window.Image();
+            tempImg.onload = function() {
+                const naturalWidth = tempImg.naturalWidth;
+                const naturalHeight = tempImg.naturalHeight;
+                // Definir filas y columnas (menos piezas: 4x3 por defecto)
+                let cols = 4;
+                let rows = 3;
+                // Si la imagen es muy panorámica, más columnas
+                if (naturalWidth / naturalHeight > 1.5) { cols = 6; rows = 2; }
+                // Si es muy vertical, más filas
+                if (naturalHeight / naturalWidth > 1.5) { cols = 2; rows = 6; }
+                // Tamaño máximo en pantalla
+                const maxW = 600, maxH = 400;
+                let boardW = Math.min(naturalWidth, maxW);
+                let boardH = Math.min(naturalHeight, maxH);
+                // Ajustar para que sea múltiplo de cols/rows
+                boardW = Math.floor(boardW / cols) * cols;
+                boardH = Math.floor(boardH / rows) * rows;
+                // Crear el tablero
+                const wrapper = document.getElementById('puzzle-board-wrapper');
+                wrapper.innerHTML = '';
+                const board = document.createElement('div');
+                board.id = 'puzzle-board';
+                board.style.width = boardW + 'px';
+                board.style.height = boardH + 'px';
+                board.style.display = 'grid';
+                board.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                board.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
+                board.style.gap = '2px';
+                wrapper.appendChild(board);
+                // Crear piezas
+                let total = cols * rows;
+                let pieces = [];
+                for (let i = 0; i < total; i++) pieces.push(i);
+                shuffle(pieces);
+                let selectedPiece = null;
+                for (let i = 0; i < total; i++) {
+                    const piece = document.createElement('div');
+                    piece.className = 'puzzle-piece';
+                    piece.setAttribute('draggable', 'true');
+                    piece.style.width = (boardW / cols) + 'px';
+                    piece.style.height = (boardH / rows) + 'px';
+                    piece.style.backgroundImage = `url('${imgSrc}')`;
+                    piece.style.backgroundSize = `${boardW}px ${boardH}px`;
+                    piece.style.backgroundPosition = `-${(pieces[i]%cols)*(boardW/cols)}px -${Math.floor(pieces[i]/cols)*(boardH/rows)}px`;
+                    piece.dataset.correct = i;
+                    piece.dataset.current = pieces[i];
+                    // Drag & drop para desktop
+                    piece.ondragstart = function(e) {
+                        e.dataTransfer.setData('piece', i);
+                    };
+                    piece.ondragover = function(e) { e.preventDefault(); };
+                    piece.ondrop = function(e) {
+                        e.preventDefault();
+                        const from = e.dataTransfer.getData('piece');
+                        if (from === '') return;
+                        const fromPiece = board.children[from];
+                        intercambiarPiezas(this, fromPiece);
+                        verificarResuelto();
+                    };
+                    // Touch: método de tocar dos piezas
+                    piece.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        if (!selectedPiece) {
+                            selectedPiece = piece;
+                            piece.style.outline = '2px solid #b83280';
+                        } else if (selectedPiece !== piece) {
+                            intercambiarPiezas(piece, selectedPiece);
+                            selectedPiece.style.outline = '';
+                            selectedPiece = null;
+                            verificarResuelto();
+                        }
+                    }, {passive: false});
+                    piece.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                    }, {passive: false});
+                    board.appendChild(piece);
+                }
+                function intercambiarPiezas(p1, p2) {
+                    const tempBg = p1.style.backgroundPosition;
+                    const tempCurrent = p1.dataset.current;
+                    p1.style.backgroundPosition = p2.style.backgroundPosition;
+                    p1.dataset.current = p2.dataset.current;
+                    p2.style.backgroundPosition = tempBg;
+                    p2.dataset.current = tempCurrent;
+                }
+                function verificarResuelto() {
+                    let solved = true;
+                    for (let j = 0; j < total; j++) {
+                        if (board.children[j].dataset.current != board.children[j].dataset.correct) {
+                            solved = false;
+                            break;
+                        }
+                    }
+                    if (solved) {
+                        setTimeout(()=>alert('¡Rompecabezas completado! 🎉'), 200);
+                    }
+                }
+            };
+            tempImg.src = imgSrc;
+        }
+        // Estilos para el rompecabezas (ajustados para piezas más pequeñas)
+        const puzzleStyle = document.createElement('style');
+        puzzleStyle.innerHTML = `
+            #puzzle-board { max-width: 600px; max-height: 400px; display: grid; gap: 2px; }
+            .puzzle-piece { min-width: 20px; min-height: 20px; border-radius: 0.5rem; box-shadow: 0 1px 4px 0 rgba(252,182,159,0.10); background-repeat: no-repeat; background-color: #fff; cursor: grab; }
+        `;
+        document.head.appendChild(puzzleStyle);
+        // Inicializa el rompecabezas al cargar
+        window.addEventListener('DOMContentLoaded', createPuzzle);
+
+        // Álbum de Fotos
+        const photos = {
+            novios: [
+                'Imagenes/IMG_20240427_185212_568.jpg',
+                'Imagenes/IMG_20250105_120031_978.jpg',
+                'Imagenes/IMG_20250105_120107_627.jpg'
+            ],
+            favoritos: [
+                'Imagenes/1721610756094.jpg',
+                'Imagenes/1714934083144.jpg',
+                'Imagenes/IMG-20240929-WA0062.jpg',
+                'Imagenes/1713565732696.jpg'
+            ],
+            nosotros: [
+                'Imagenes/IMG_20240427_185252_826.jpg',
+                'Imagenes/IMG-20241001-WA0038.jpg',
+                'Imagenes/IMG-20241026-WA0008.jpg',
+                'Imagenes/IMG-20250510-WA0029.jpg'
+            ]
+        };
+
+        $('.album-btn').click(function() {
+            const category = $(this).data('category');
+            $('#album-grid').empty();
+            photos[category].forEach(src => {
+                $('#album-grid').append(`<img src="${src}" alt="Foto" class="album-photo">`);
+            });
+        });
+        $('.album-btn').first().click();
+
+        // Cuestionario
+        const questions = [
+            {
+                question: '¿En qué mes nos conocimos?',
+                options: ['Julio', 'Agosto', 'Septiembre', 'Octubre'],
+                correct: 'Julio'
+            },
+            {
+                question: '¿Cuál fue nuestro primer lugar especial?',
+                options: ['Parque', 'Cine', 'Playa', 'Restaurante'],
+                correct: 'Playa'
+            },
+            {
+                question: '¿Cuál es nuestra canción favorita?',
+                options: ['Halo', 'Blanco y Negro', 'Amor Eterno', 'Perfect'],
+                correct: 'Halo'
+            }
+        ];
+        let currentQuestion = 0;
+        let correctAnswers = 0;
+        const totalQuestions = questions.length;
+
+        function loadQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById('quiz-question').textContent = q.question;
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+            q.options.forEach(option => {
+                const button = document.createElement('button');
+                button.className = 'quiz-option m-1';
+                button.textContent = option;
+                button.disabled = false;
+                button.onclick = () => checkAnswer(option, q.correct, button);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        let quizFailed = false;
+        function checkAnswer(selected, correct, btn) {
+            const result = document.getElementById('quiz-result');
+            if (quizFailed) return;
+            if (selected === correct) {
+                result.textContent = '¡Correcto! Eres increíble ❤️';
+                correctAnswers++;
+                // Deshabilitar todos los botones
+                document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+            } else {
+                // Deshabilitar todos los botones
+                document.querySelectorAll('.quiz-option').forEach(b => b.disabled = true);
+                // Mostrar resultado final y ocultar botón de siguiente pregunta
+                const finalResult = document.getElementById('final-result');
+                finalResult.textContent = '¡Perdiste! Ahora te toca brindar la próxima salida a donde yo escoja 😏';
+                finalResult.style.display = 'block';
+                document.getElementById('next-question').style.display = 'none';
+            }
+        }
+
+        document.getElementById('next-question').addEventListener('click', function() {
+            if (quizFailed) return;
+            currentQuestion++;
+            if (currentQuestion < totalQuestions) {
+                document.getElementById('quiz-result').textContent = '';
+                loadQuestion();
+            } else {
+                const finalResult = document.getElementById('final-result');
+                if (correctAnswers === totalQuestions) {
+                    finalResult.innerHTML = '¡Felicidades! Respondiste todo correctamente, ganaste un viaje a la playa 🏖️<br>¡Y también ganaste <span style="color:#b83280">otro año juntos</span>! 💖';
+                    finalResult.style.display = 'block';
+                } else {
+                    finalResult.textContent = '¡Gracias por jugar! Respondiste ' + correctAnswers + ' de ' + totalQuestions + ' correctamente.';
+                    finalResult.style.display = 'block';
+                }
+            }
+        });
+
+        loadQuestion();
+    </script>
+</body>
+</body>
+<!-- Footer Romántico -->
+<footer class="bg-gradient-to-r from-pink-100 via-pink-50 to-pink-200 text-pink-700 py-6 mt-8 border-t-2 border-pink-100 shadow-inner">
+    <div class="container mx-auto text-center">
+        <div class="flex flex-col items-center justify-center">
+            <p class="text-lg max-w-xl mx-auto" style="font-family: 'Poppins', cursive;">
+                Esta página fue hecha con mucho amor. 
+                Espero que te guste este pequeño regalo digital y que sigamos sumando recuerdos juntos.<br>
+                <span class="text-pink-500 font-bold">Te amo muchísimo ❤️</span>
+            </p>
+            <p class="mt-3 text-sm text-pink-400">Creada por Dhanialys para Anyelo &copy; 2023-2025</p>
+        </div>
+    </div>
+</footer>
+</html>
